@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses | Learning Management System</title>
+    <style>
+        :root {
+            --schoology-blue: #002e5d;
+            --bg-gray: #f8f9fa;
+            --text-main: #333;
+            --border: #e0e0e0;
+        }
+
+        body { font-family: 'Inter', sans-serif; margin: 0; background: var(--bg-gray); color: var(--text-main); }
+        
+        /* Navbar Styling */
+        .navbar { 
+            background: var(--schoology-blue); 
+            color: white; 
+            padding: 0 20px; 
+            display: flex; 
+            align-items: center; 
+            height: 50px;
+            font-size: 14px;
+        }
+        .nav-item { margin-right: 20px; cursor: pointer; opacity: 0.9; }
+        .nav-item:hover { opacity: 1; }
+
+        /* Dashboard Layout */
+        .container { display: flex; max-width: 1100px; margin: 20px auto; gap: 20px; }
+        
+        .sidebar { width: 250px; }
+        .main-content { flex-grow: 1; background: white; border: 1px solid var(--border); border-radius: 4px; padding: 20px; }
+
+        .course-card {
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+        }
+        .course-icon { width: 40px; height: 40px; background: #ddd; margin-right: 15px; border-radius: 4px; }
+
+        /* The Hidden Mode */
+        #hidden-interface { 
+            display: none; 
+            background: #000; 
+            color: #fff; 
+            height: 100vh; 
+            width: 100vw; 
+            position: fixed; 
+            top: 0; left: 0; 
+            z-index: 9999;
+        }
+
+        .footer { text-align: center; color: #999; font-size: 11px; margin-top: 50px; }
+        
+        /* The trigger is just the "1" in the version number */
+        .ver-num { cursor: pointer; color: #999; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div id="school-view">
+    <div class="navbar">
+        <div class="nav-item"><strong>COURSES</strong></div>
+        <div class="nav-item">GROUPS</div>
+        <div class="nav-item">RESOURCES</div>
+        <div style="margin-left: auto;">Search | Calendar | Notifications</div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <h3 style="font-size: 16px;">Upcoming</h3>
+            <p style="font-size: 13px; color: #666;">No upcoming assignments</p>
+        </div>
+
+        <div class="main-content">
+            <h2>Course Dashboard</h2>
+            <div class="course-card">
+                <div class="course-icon"></div>
+                <div><strong>Algebra II: Section 4-B</strong><br><small>Teacher: Smith, J.</small></div>
+            </div>
+            <div class="course-card">
+                <div class="course-icon" style="background: #b3d4fc;"></div>
+                <div><strong>English Literature: Period 3</strong><br><small>Teacher: Doe, A.</small></div>
+            </div>
+            <div class="course-card">
+                <div class="course-icon" style="background: #d1e7dd;"></div>
+                <div><strong>World History</strong><br><small>Teacher: Brown, L.</small></div>
+            </div>
+
+            <div class="footer">
+                © 2026 Education Board Software <br>
+                Build v1.0.<span class="ver-num" onclick="toggleMode()">1</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="hidden-interface">
+    <div style="padding: 20px;">
+        <h2>Access Granted</h2>
+        <hr>
+        <p>Paste your proxy URL or Iframe code here.</p>
+        <button onclick="location.reload()" style="background: #333; color: white; border: 1px solid #555; padding: 5px 10px;">Exit Stealth Mode</button>
+    </div>
+</div>
+
+<script>
+    function toggleMode() {
+        document.getElementById('school-view').style.display = 'none';
+        document.getElementById('hidden-interface').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
