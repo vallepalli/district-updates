@@ -1,91 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/x-icon" href="https://www.google.com/favicon.ico">
     <meta charset="UTF-8">
-    <title>Home | Schoology</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Learning Management System</title>
+    <link rel="icon" type="image/x-icon" href="https://www.google.com/favicon.ico">
     <style>
-        :root { --blue: #002e5d; --gray: #f4f4f4; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--gray); }
+        :root { --schoology-blue: #002e5d; --bg: #f0f2f5; --text: #333; }
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: var(--text); overflow-x: hidden; }
         
-        /* Login Screen */
-        #login-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
-        .login-box { background: white; padding: 40px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 300px; text-align: center; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button.login-btn { width: 100%; padding: 10px; background: var(--blue); color: white; border: none; border-radius: 4px; cursor: pointer; }
+        /* 1. LOGIN SCREEN */
+        #login-page { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; background: white; }
+        .login-card { width: 320px; text-align: center; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .logo { background: var(--schoology-blue); color: white; padding: 10px; font-weight: bold; border-radius: 4px; margin-bottom: 20px; }
+        input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .btn { width: 100%; padding: 12px; background: var(--schoology-blue); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
 
-        /* Dashboard */
-        #dashboard { display: none; }
-        .nav { background: var(--blue); color: white; padding: 15px; display: flex; justify-content: space-between; }
-        .content { max-width: 900px; margin: 20px auto; background: white; padding: 20px; border: 1px solid #ddd; }
+        /* 2. DASHBOARD DISGUISE */
+        #dashboard-page { display: none; }
+        .nav-bar { background: var(--schoology-blue); color: white; padding: 0 20px; display: flex; align-items: center; height: 50px; font-size: 14px; }
+        .nav-item { margin-right: 20px; opacity: 0.8; cursor: pointer; }
+        .container { max-width: 1000px; margin: 30px auto; display: flex; gap: 20px; padding: 0 20px; }
+        .main-col { flex: 3; background: white; padding: 20px; border-radius: 4px; border: 1px solid #ddd; }
+        .side-col { flex: 1; }
+        .course-box { padding: 15px; border-bottom: 1px solid #eee; }
         
-        /* Secret Screen */
-        #secret-area { display: none; background: #000; color: #0f0; height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; z-index: 1000; }
-        
-        .footer { text-align: center; color: #bbb; font-size: 11px; margin-top: 50px; }
-        #trigger { cursor: pointer; }
+        .footer { text-align: center; color: #aaa; font-size: 11px; margin-top: 60px; padding-bottom: 20px; }
+        #version-trigger { cursor: pointer; user-select: none; }
     </style>
 </head>
 <body>
 
-    <div id="login-screen">
-        <div class="login-box">
-            <h2 style="color: var(--blue);">District Login</h2>
-            <input type="text" placeholder="Student ID">
+    <div id="login-page">
+        <div class="login-card">
+            <div class="logo">LMS PORTAL</div>
+            <input type="text" placeholder="Username / Email">
             <input type="password" placeholder="Password">
-            <button class="login-btn" onclick="showDashboard()">Login</button>
+            <button class="btn" onclick="login()">Log In</button>
+            <p style="font-size: 12px; color: #777; margin-top: 15px;">Forgot your password?</p>
         </div>
     </div>
 
-    <div id="dashboard">
-        <div class="nav">
-            <span>Student Dashboard</span>
-            <span>Settings | Log Out</span>
+    <div id="dashboard-page">
+        <div class="nav-bar">
+            <div class="nav-item"><strong>COURSES</strong></div>
+            <div class="nav-item">GROUPS</div>
+            <div class="nav-item">RESOURCES</div>
+            <div style="margin-left: auto;">Calendar | Messages</div>
         </div>
-        <div class="content">
-            <h3>Welcome back, Student</h3>
-            <p><strong>Announcements:</strong> Please remember to submit your Winter Break journals by Friday.</p>
-            <hr>
-            <h4>Your Courses</h4>
-            <div style="padding: 10px; background: #f9f9f9; border-left: 4px solid var(--blue);">
-                Algebra II - Period 4 <br>
-                English Literature - Period 1
-            </div>
-            
-            <div class="footer">
-                Build: 2026.01.16 | <span id="trigger">v1.0.4.1</span>
-            </div>
-        </div>
-    </div>
 
-    <div id="secret-area">
-        <div style="padding: 20px;">
-            PGgxPkdhbWUgUHJveHk8L2gxPg==
-            <p>Press 'P' to return to Dashboard.</p>
-            <hr>
-            <iframe src="https://theothegoat213.github.io/" style="width:100%; height:80vh; border:none; background:white;"></iframe>
+        <div class="container">
+            <div class="main-col">
+                <h2 style="margin-top:0;">Course Dashboard</h2>
+                <div class="course-box"><strong>English 10: Section 2</strong><br><small>Due: Essay Revision</small></div>
+                <div class="course-box"><strong>Algebra II: Honors</strong><br><small>Due: No upcoming assignments</small></div>
+                <div class="course-box"><strong>World History</strong><br><small>Due: Chapter 4 Quiz</small></div>
+            </div>
+            <div class="side-col">
+                <div style="background: white; padding: 15px; border: 1px solid #ddd; border-radius: 4px;">
+                    <h4 style="margin-top:0;">Reminders</h4>
+                    <p style="font-size: 13px; color: #666;">No new notifications from your district.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            All Rights Reserved © 2026 Education Systems Inc.<br>
+            System Build: <span id="version-trigger">1.0.4.1</span>
         </div>
     </div>
 
     <script>
-        function showDashboard() {
-            document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'block';
+        // 1. Function to switch from Login to Dashboard
+        function login() {
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('dashboard-page').style.display = 'block';
         }
 
-        // The Secret Trigger (Clicking v1.0.4.1)
-        document.getElementById('trigger').onclick = function() {
-            document.getElementById('dashboard').style.display = 'none';
-            document.getElementById('secret-area').style.display = 'block';
+        // 2. The Secret Trigger: Clicking the version number
+        // This opens a new "About:Blank" tab to bypass filters
+        document.getElementById('version-trigger').onclick = function() {
+            const secretWindow = window.open('about:blank', '_blank');
+            
+            // This is the URL of the games or proxy you want to load
+            const gameUrl = "https://3kh0.github.io"; 
+
+            // Setting up the new blank tab
+            secretWindow.document.title = "Google Drive";
+            secretWindow.document.body.style.margin = "0";
+            secretWindow.document.body.style.padding = "0";
+            secretWindow.document.body.style.overflow = "hidden";
+
+            const iframe = secretWindow.document.createElement('iframe');
+            iframe.style.width = "100vw";
+            iframe.style.height = "100vh";
+            iframe.style.border = "none";
+            iframe.src = gameUrl;
+
+            secretWindow.document.body.appendChild(iframe);
         };
 
-        // Panic Button (Press P)
+        // 3. Panic Key: Press 'P' to reset to login instantly
         window.onkeydown = function(e) {
             if (e.key.toLowerCase() === 'p') {
-                document.getElementById('secret-area').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'block';
+                document.getElementById('dashboard-page').style.display = 'none';
+                document.getElementById('login-page').style.display = 'flex';
             }
         };
     </script>
+
 </body>
 </html>
